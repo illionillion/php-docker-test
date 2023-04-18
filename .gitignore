@@ -19,7 +19,6 @@
 !/log/.gitkeep
 !/cache/.gitkeep
 
-./tree.txt
 
 # MySQL関連のファイル
 *.sql
