@@ -1,17 +1,21 @@
 <?php
-$csv_path = "db-txt/form-data.csv";
-// CSVファイルが存在しない場合は、新規作成する
-if (!file_exists($csv_path)) {
-    $file = fopen($csv_path, 'w');
-    // fputcsv($file, array('name', 'email', 'subject', 'message'));
-    fclose($file);
-}
+require_once 'db_connect.php';
+require_once 'dir-check.php';
 
 // フォームデータを取得
 $name = $_POST['name'];
 $email = $_POST['email'];
 $subject = $_POST['subject'];
 $message = $_POST['message'];
+
+// SQL文を作成して実行する
+$sql = "INSERT INTO inquiries (name, email, subject, message) VALUES (:name, :email, :subject, :message)";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':name', $name, PDO::PARAM_STR);
+$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+$stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
+$stmt->bindParam(':message', $message, PDO::PARAM_STR);
+$stmt->execute();
 
 // CSVファイルに保存するためのデータを準備
 $data = array($name, $email, $subject, $message);

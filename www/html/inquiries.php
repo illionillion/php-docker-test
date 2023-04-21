@@ -1,9 +1,5 @@
 <?php
-$csv_path = "db-txt/form-data.csv";
-if (!file_exists($csv_path)) {
-    $file = fopen($csv_path, 'w');
-    fclose($file);
-}
+require_once 'dir-check.php';
 ?>
 <!DOCTYPE html>
 <html>
