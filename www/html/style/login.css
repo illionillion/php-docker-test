@@ -62,3 +62,7 @@ input[type="submit"]:hover {
   color: #2196f3;
   text-decoration: none;
 }
+
+.error {
+  color: red;
+}

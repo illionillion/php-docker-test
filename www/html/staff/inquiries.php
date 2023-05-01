@@ -1,6 +1,19 @@
 <?php
-require_once 'db_connect.php';
-require_once 'dir-check.php';
+require_once '../db_connect.php';
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
+if (isset($_POST['logout'])) {
+    $_SESSION = array();
+    session_destroy();
+    header('Location: login.php');
+    exit();
+}
+
 // SQL文を作成して実行する
 $sql = "SELECT * FROM inquiries";
 $stmt = $pdo->prepare($sql);
@@ -13,28 +26,16 @@ $inquiries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>お問い合わせ一覧</title>
-    <link rel="stylesheet" href="style/inquiries.css">
+    <link rel="stylesheet" href="../style/inquiries.css">
 </head>
 
 <body>
-    <h1>お問い合わせ一覧</h1>
-    <table>
-        <tr>
-            <th>名前</th>
-            <th>メールアドレス</th>
-            <th>件名</th>
-            <th>メッセージ</th>
-        </tr>
-        <?php $file = fopen("db-txt/form-data.csv", 'r'); ?>
-        <?php while ($data = fgetcsv($file)) : ?>
-            <tr>
-                <?php foreach ($data as $value) : ?>
-                    <td><?= htmlspecialchars($value) ?></td>
-                <?php endforeach ?>
-            </tr>
-        <?php endwhile ?>
-        <?php fclose($file); ?>
-    </table>
+    <header>
+        <h1>お問い合わせ一覧</h1>
+        <form action="" method="post">
+            <input type="submit" name="logout" value="ログアウト">
+        </form>
+    </header>
     <table>
         <tr>
             <th>名前</th>

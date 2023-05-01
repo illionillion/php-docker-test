@@ -12,6 +12,9 @@
       <label for="username">ユーザー名</label>
       <input type="text" id="username" name="username" />
 
+      <label for="useremail">メールアドレス</label>
+      <input type="text" id="useremail" name="useremail" />
+
       <label for="password">パスワード</label>
       <input type="password" id="password" name="password" />
 
