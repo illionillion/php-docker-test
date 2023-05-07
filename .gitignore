@@ -31,3 +31,6 @@
 /log
 /ib_logfile*
 /*.pid
+
+# テーブル作成用のSQL
+!/contact_db.sql
