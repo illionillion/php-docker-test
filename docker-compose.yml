@@ -32,8 +32,8 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=db #mysqlサービス名を指定
-      - PMA_USER=root
-      - PMA_PASSWORD=secret
+      # - PMA_USER=root # なぜかコメントアウトしたらWindowsでphpMyAdminに接続できた
+      # - PMA_PASSWORD=secret
     ports:
       - 8888:80
     depends_on:
